@@ -1,0 +1,31 @@
+Entity Component System design document...
+
+Entity:
+  Unique ID
+Entity Manager:
+  Add components
+    Add bit to bitset (need to get component ID)
+    Also needs to add a pointer to an actual Component object (templates for this?) (could store pointers in a vector<Component*>)
+  Get components
+    Has a list of components (This can be a bitset with a bit being set indicating it has that component)
+
+Component:
+  Structure containing data
+  Has a Unique ID
+Component Manager:
+  Get Unique ID
+    For now do something stupid like an enum list that maps to the component so I can return a pointer to a specific Component
+
+System:
+  Logic/algorithm/functionality using the component data
+  Run Specific System
+    Has a list of entities passed to it that will run this system (that way the system doesn't have to check that the entity has required components, it just assumes that)
+
+
+
+Coordinator:
+  List of entities
+  Add entity 
+    Calls Entity which has some function that gets next entity unique ID
+  Remove entity
+  Knows what components are required for a given system (could do bit-wise logic to check).

@@ -1,5 +1,5 @@
 TARGET = main
-SRC = main.o EntityManager.o
+SRC = main.o
 
 CC = g++
 CFLAGS = -Wall -g

@@ -1,7 +1,11 @@
 #include <iostream>
 #include <queue>
 
-#include "ECS.h"
+#include "Entity.h"
+#include "Component.h"
+#include "System.h"
+
+entity_id EntityManager::next_entity_id = 0;
 
 void simple_queue_example()
 {
@@ -25,9 +29,29 @@ void simple_queue_example()
   int_queue.pop();
 }
 
+void entity_component_system_example()
+{
+  Coordinator coordinator;
+  Entity *player = coordinator.create_new_entity("player");
+  Entity *enemy = coordinator.create_new_entity("enemy");
+  Entity *wall = coordinator.create_new_entity("wall");
+
+  coordinator.debug_print_all_entities();
+
+  player->add_component(TRANSFORM_COMPONENT);
+  player->get_component(TRANSFORM_COMPONENT)->print_debug();
+  player->add_component(KEYBOARD_COMPONENT);
+  player->get_component(KEYBOARD_COMPONENT)->print_debug();
+
+  enemy->add_component(TRANSFORM_COMPONENT);
+  enemy->get_component(TRANSFORM_COMPONENT)->print_debug();
+}
+
 int main(int argc, char** argv)
 {
-  simple_queue_example();
+  //simple_queue_example();
+
+  entity_component_system_example();
 
   return 0;
 }

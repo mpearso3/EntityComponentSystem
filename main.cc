@@ -45,6 +45,8 @@ void entity_component_system_example()
 
   enemy->add_component(TRANSFORM_COMPONENT);
   enemy->get_component(TRANSFORM_COMPONENT)->print_debug();
+
+  coordinator.debug_print_all_entities();
 }
 
 int main(int argc, char** argv)

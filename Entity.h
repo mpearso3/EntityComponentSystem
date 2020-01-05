@@ -89,10 +89,19 @@ public:
 
   void debug_print_all_entities()
   {
+    std::cout << std::endl;
     for(std::vector<Entity*>::const_iterator vec_it = entities.begin(); vec_it != entities.end(); ++vec_it)
     {
       std::cout << "id " << (*vec_it)->get_entity_id() << std::endl;
       std::cout << "  name " << (*vec_it)->get_entity_name() << std::endl;
+
+      if((*vec_it)->get_component(TRANSFORM_COMPONENT)) {
+        (*vec_it)->get_component(TRANSFORM_COMPONENT)->print_debug();
+      }
+
+      if((*vec_it)->get_component(KEYBOARD_COMPONENT)) {
+        (*vec_it)->get_component(KEYBOARD_COMPONENT)->print_debug();
+      }
     }
   }
 private:

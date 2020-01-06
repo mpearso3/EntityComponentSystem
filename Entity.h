@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <stdarg.h>
 #include <assert.h>
 #include <vector>
 #include <bitset>
@@ -22,20 +23,18 @@ public:
   entity_id get_entity_id() const { return id; }
   std::string get_entity_name() const { return name; }
 
-  void add_component(component_id id)
+  template <typename T>
+  void add_component(int n_args, ...)
   {
-    // maybe use a factory pattern to create a new instance of a component?
+    std::cout << "add_component n_args " << n_args << std::endl;
 
-    Component *component;
-    if(id == TRANSFORM_COMPONENT) {
-      component = new TransformComponent(5, 10); // TODO: Setup variable parameter list
-    }
-    else if(id == KEYBOARD_COMPONENT) {
-      component = new KeyboardComponent(20); // TODO: Setup variable parameter list
-    }
-    else {
-      assert(0 && "add_component must add a component id that exists\n");
-    }
+    T *component;
+    va_list args;
+    va_start(args, n_args);
+    component = new T(n_args, args);
+    va_end(args);
+
+    int id = component->get_id();
 
     components[id] = component;
     component_biset.set(id, 1);

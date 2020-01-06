@@ -6,6 +6,50 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 CC	makefile	/^CC = g++$/;"	m
 CFLAGS	makefile	/^CFLAGS = -Wall -g$/;"	m
+Component	Component.h	/^  Component() {}$/;"	f	class:Component
+Component	Component.h	/^class Component$/;"	c
+Coordinator	Entity.h	/^  Coordinator() {}$/;"	f	class:Coordinator
+Coordinator	Entity.h	/^class Coordinator$/;"	c
+Entity	Entity.h	/^  Entity(entity_id id, std::string name) : id(id), name(name) $/;"	f	class:Entity
+Entity	Entity.h	/^class Entity$/;"	c
+EntityManager	Entity.h	/^  EntityManager() {}$/;"	f	class:EntityManager
+EntityManager	Entity.h	/^class EntityManager$/;"	c
+KEYBOARD_COMPONENT	Component.h	/^  KEYBOARD_COMPONENT  = 1$/;"	e	enum:component_ids
+KeyboardComponent	Component.h	/^  KeyboardComponent(int key_pressed, int BAD) : key_pressed(key_pressed) {}$/;"	f	class:KeyboardComponent
+KeyboardComponent	Component.h	/^class KeyboardComponent : public Component$/;"	c
+MAX_COMPONENTS	Component.h	/^const uint16_t MAX_COMPONENTS = 32;$/;"	v
+MAX_ENTITIES	Entity.h	/^const uint32_t MAX_ENTITIES = 5000;$/;"	v
 SRC	makefile	/^SRC = main.o$/;"	m
+System	System.h	/^  System() {}$/;"	f	class:System
+System	System.h	/^class System$/;"	c
 TARGET	makefile	/^TARGET = main$/;"	m
+TRANSFORM_COMPONENT	Component.h	/^  TRANSFORM_COMPONENT = 0,$/;"	e	enum:component_ids
+TransformComponent	Component.h	/^  TransformComponent(int x, int y) : position_x(x), position_y(y) {}$/;"	f	class:TransformComponent
+TransformComponent	Component.h	/^class TransformComponent : public Component$/;"	c
+add_component	Entity.h	/^  void add_component(component_id id)$/;"	f	class:Entity
+component_biset	Entity.h	/^  std::bitset<MAX_COMPONENTS> component_biset;$/;"	m	class:Entity
+component_id	Component.h	/^typedef uint16_t component_id;$/;"	t
+component_ids	Component.h	/^enum component_ids$/;"	g
+components	Entity.h	/^  std::vector<Component*> components;$/;"	m	class:Entity
+create_new_entity	Entity.h	/^  Entity* create_new_entity(std::string name)$/;"	f	class:Coordinator
+debug_print_all_entities	Entity.h	/^  void debug_print_all_entities()$/;"	f	class:Coordinator
+entities	Entity.h	/^  std::vector<Entity*> entities;$/;"	m	class:Coordinator
+entity_component_system_example	main.cc	/^void entity_component_system_example()$/;"	f
+entity_id	Entity.h	/^typedef uint32_t entity_id;$/;"	t
+entity_manager	Entity.h	/^  EntityManager entity_manager;$/;"	m	class:Coordinator
+get_component	Entity.h	/^  Component* get_component(component_id id)$/;"	f	class:Entity
+get_components	Entity.h	/^  std::bitset<MAX_COMPONENTS> get_components()$/;"	f	class:Entity
+get_entity_id	Entity.h	/^  entity_id get_entity_id() const { return id; }$/;"	f	class:Entity
+get_entity_name	Entity.h	/^  std::string get_entity_name() const { return name; }$/;"	f	class:Entity
+get_next_entity_id	Entity.h	/^  entity_id get_next_entity_id()$/;"	f	class:EntityManager
+id	Entity.h	/^  entity_id id;$/;"	m	class:Entity
+key_pressed	Component.h	/^  int key_pressed;$/;"	m	class:KeyboardComponent
 main	main.cc	/^int main(int argc, char** argv)$/;"	f
+name	Entity.h	/^  std::string name;$/;"	m	class:Entity
+next_entity_id	Entity.h	/^  static entity_id next_entity_id;$/;"	m	class:EntityManager
+next_entity_id	main.cc	/^entity_id EntityManager::next_entity_id = 0;$/;"	m	class:EntityManager	file:
+position_x	Component.h	/^  int position_x;$/;"	m	class:TransformComponent
+position_y	Component.h	/^  int position_y;$/;"	m	class:TransformComponent
+print_debug	Component.h	/^  void print_debug() const $/;"	f	class:KeyboardComponent
+print_debug	Component.h	/^  void print_debug() const $/;"	f	class:TransformComponent
+simple_queue_example	main.cc	/^void simple_queue_example()$/;"	f

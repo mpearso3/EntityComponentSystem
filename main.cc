@@ -38,12 +38,12 @@ void entity_component_system_example()
 
   coordinator.debug_print_all_entities();
 
-  player->add_component(TRANSFORM_COMPONENT);
+  player->add_component<TransformComponent>(2, 10, 11);
   player->get_component(TRANSFORM_COMPONENT)->print_debug();
-  player->add_component(KEYBOARD_COMPONENT);
+  player->add_component<KeyboardComponent>(1, 5);
   player->get_component(KEYBOARD_COMPONENT)->print_debug();
 
-  enemy->add_component(TRANSFORM_COMPONENT);
+  enemy->add_component<TransformComponent>(2, 3, 8);
   enemy->get_component(TRANSFORM_COMPONENT)->print_debug();
 
   coordinator.debug_print_all_entities();

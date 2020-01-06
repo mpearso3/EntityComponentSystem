@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <stdarg.h>
 
 typedef uint16_t component_id;
 
@@ -16,13 +17,24 @@ class Component
 public:
   Component() {}
 
+  virtual int get_id() const = 0;
+
   virtual void print_debug() const = 0;
 };
 
 class TransformComponent : public Component
 {
 public:
-  TransformComponent(int x, int y) : position_x(x), position_y(y) {}
+  TransformComponent(int n_args, va_list args) 
+  {
+    position_x = va_arg(args, int);
+    position_y = va_arg(args, int);
+  }
+
+  int get_id() const
+  {
+    return TRANSFORM_COMPONENT;
+  }
 
   void print_debug() const 
   {
@@ -37,7 +49,15 @@ private:
 class KeyboardComponent : public Component
 {
 public:
-  KeyboardComponent(int key_pressed) : key_pressed(key_pressed) {}
+  KeyboardComponent(int n_args, va_list args)
+  {
+    key_pressed = va_arg(args, int);
+  }
+
+  int get_id() const
+  {
+    return KEYBOARD_COMPONENT;
+  }
 
   void print_debug() const 
   {
